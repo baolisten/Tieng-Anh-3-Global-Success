@@ -11,13 +11,13 @@
    5. Lưu file này lại, deploy lại lên Netlify — vậy là xong. */
 
 const FIREBASE_CONFIG = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
+  apiKey: "AIzaSyDStfe16zJPNQryM4huemeIerkVHEf-lzw",
+  authDomain: "app-hoc-tu-vung-lop-3.firebaseapp.com",
+  databaseURL: "https://app-hoc-tu-vung-lop-3-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "app-hoc-tu-vung-lop-3",
+  storageBucket: "app-hoc-tu-vung-lop-3.firebasestorage.app",
+  messagingSenderId: "729276165558",
+  appId: "1:729276165558:web:b23f2eaa2787244586e517"
 };
 
 /* Mã định danh "gia đình" — chỉ 1 gia đình dùng chung, không cần đổi. */
