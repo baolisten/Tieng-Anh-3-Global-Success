@@ -112,6 +112,9 @@ function normalizeProgress(){
   }
   if(!progress.awardedUnits) progress.awardedUnits = [];
   if(!progress.patterns) progress.patterns = {};
+  if(!progress.badges) progress.badges = [];
+  if(!progress.words) progress.words = {};
+  if(!progress.history) progress.history = {};
 }
 
 async function loadProgress(){
@@ -778,7 +781,7 @@ function subscribeProgress(cb){
   try{
     fbDb.ref("families/"+FAMILY_ID+"/progress").on("value", snap=>{
       const val = snap.val();
-      if(val) progress = val;
+      if(val) progress = Object.assign(emptyProgress(), val);
       cb(progress, true);
     });
   }catch(e){ cb(progress, false); }
