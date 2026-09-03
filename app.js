@@ -1337,4 +1337,11 @@ loadVoices(()=>{});
 Promise.all([loadProgress(), loadVoicePref(), loadCustom(), loadSettings(), loadArchives()]).then(() => {
   home();
   setTimeout(() => { if(!enVoices().length) loadVoices(()=>{}); }, 600);
+  /* lắng nghe cập nhật trực tiếp từ Firebase (VD ba mẹ đổi icon/tên/ẩn-hiện bên trang phụ huynh)
+     — chỉ vẽ lại màn hình nếu con đang đứng ở trang chính, tránh làm gián đoạn lúc đang học/làm bài */
+  const refreshHomeIfIdle = ()=>{ if(document.getElementById("rewards")) home(); };
+  subscribeProgress(refreshHomeIfIdle);
+  subscribeCustom(refreshHomeIfIdle);
+  subscribeSettings(refreshHomeIfIdle);
+  subscribeArchives(refreshHomeIfIdle);
 });
