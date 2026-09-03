@@ -401,7 +401,7 @@ function learnCard(q){
     </div>
     ${goBtn("nx","Từ tiếp theo")}`);
   document.getElementById("say").onclick = ()=>toggleSay(q.en);
-  document.getElementById("nx").onclick = ()=>{ mark(q.en,true); next(); };
+  document.getElementById("nx").onclick = ()=>{ if(q.u) progress.lastUnit = q.u; mark(q.en,true); next(); };
   say(q.en);
 }
 

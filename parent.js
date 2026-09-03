@@ -928,8 +928,11 @@ function rewardSettings(){
       <h3>Số sao hiện tại</h3>
       <p class="sub" style="margin:0 0 10px">Con đang có <b style="color:var(--stud)">⭐ ${progress.stars||0} sao</b>. Cộng/trừ trực tiếp khi đổi thưởng hoặc muốn thưởng thêm.</p>
       <div class="row">
-        <input class="type-in small" id="starDelta" type="number" placeholder="Số sao (VD: 10 hoặc -10)" style="flex:2">
-        ${goBtn("applyStars","Áp dụng",{attrs:'style="flex:1"'})}
+        <input class="type-in small" id="starDelta" type="number" inputmode="numeric" min="0" placeholder="Số sao (VD: 10)" style="flex:2">
+      </div>
+      <div class="row" style="margin-top:8px">
+        ${goBtn("addStars","+ Cộng",{attrs:'style="flex:1"'})}
+        ${goBtn("subStars","− Trừ",{ghost:true, attrs:'style="flex:1"'})}
       </div>
     </div>
     <div class="card">
@@ -959,10 +962,16 @@ function rewardSettings(){
     settings[sel.dataset.setting] = +sel.value;
     await saveSettings();
   });
-  document.getElementById("applyStars").onclick = async()=>{
+  document.getElementById("addStars").onclick = async()=>{
     const v = +document.getElementById("starDelta").value;
-    if(!v){ alert("Nhập số sao khác 0."); return; }
-    await adjustStars(v);
+    if(!v){ alert("Nhập số sao lớn hơn 0."); return; }
+    await adjustStars(Math.abs(v));
+    rewardSettings();
+  };
+  document.getElementById("subStars").onclick = async()=>{
+    const v = +document.getElementById("starDelta").value;
+    if(!v){ alert("Nhập số sao lớn hơn 0."); return; }
+    await adjustStars(-Math.abs(v));
     rewardSettings();
   };
 }
